@@ -45,7 +45,7 @@ using Places Database"](http://places.csail.mit.edu/places_NIPS14.pdf), Advances
 Clone the `MAX-Places-CNN` repository locally. In a terminal, run the following command:
 
 ```
-$ git clone https://github.ibm.com/IBMCode/MAX-Places-CNN
+$ git clone https://github.com/IBM/MAX-Places365-CNN.git
 ```
 
 Change directory into the repository base folder:
