@@ -42,7 +42,7 @@ using Places Database"](http://places.csail.mit.edu/places_NIPS14.pdf), Advances
 
 ## 1. Build the Model
 
-Clone the `MAX-Places-CNN` repository locally. In a terminal, run the following command:
+Clone this repository locally. In a terminal, run the following command:
 
 ```
 $ git clone https://github.com/IBM/MAX-Places365-CNN.git
@@ -51,7 +51,7 @@ $ git clone https://github.com/IBM/MAX-Places365-CNN.git
 Change directory into the repository base folder:
 
 ```
-$ cd MAX-Places-CNN
+$ cd MAX-Places365-CNN
 ```
 
 To build the docker image locally, run: 
