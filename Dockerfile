@@ -7,8 +7,15 @@ WORKDIR /workspace
 RUN mkdir assets
 RUN wget -nv ${model_bucket}/${model_file} --output-document=/workspace/assets/${model_file}
 
-RUN conda install -y pytorch-cpu torchvision -c pytorch
-RUN conda install -y ipython
+# Conda is the preferred way to install Pytorch, but the Anaconda install pulls
+# in non-OSS libraries with customized license terms, specifically CUDA and MKL.
+#RUN conda update -n base conda
+#RUN conda install -y pytorch-cpu torchvision -c pytorch
+
+# pip install pytorch to avoid dependencies on MKL or CUDA
+RUN pip install --upgrade pip
+RUN pip install http://download.pytorch.org/whl/cpu/torch-0.3.1-cp36-cp36m-linux_x86_64.whl
+RUN pip install torchvision
 RUN pip install flask-restplus
 
 COPY . /workspace
