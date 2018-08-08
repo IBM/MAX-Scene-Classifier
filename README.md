@@ -105,7 +105,7 @@ The API server automatically generates an interactive Swagger documentation page
 
 Use the `model/predict` endpoint to load a test image (you can use one of the test images from the `assets` folder) and get predicted labels for the image from the API.
 
-![Swagger Doc Screenshot](docs/max-pytorch-places365-screenshot.png)
+![Swagger Doc Screenshot](docs/swagger-screenshot.png)
 
 You can also test it on the command line, for example:
 
