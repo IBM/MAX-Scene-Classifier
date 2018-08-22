@@ -1,4 +1,4 @@
-# IBM Code Model Asset Exchange: Places365-CNN
+# IBM Code Model Asset Exchange: Scene-Classifier
 
 This repository contains code to instantiate and deploy an image classification model. This model recognizes the 365 different classes of scene/location in the [Places365-Standard subset of the Places2 Dataset](http://places2.csail.mit.edu/). The model is based on the [Places365-CNN Model](https://github.com/CSAILVision/places365) and consists of a pre-trained deep convolutional net using the ResNet architecture, trained on the [ImageNet-2012](http://www.image-net.org/challenges/LSVRC/2012/) data set. The pre-trained model is then fine-tuned on the Places365-Standard dataset. The input to the model is a 224x224 image, and the output is a list of estimated class probilities.
 
@@ -43,7 +43,7 @@ using Places Database"](http://places.csail.mit.edu/places_NIPS14.pdf), Advances
 To run the docker image, which automatically starts the model serving API, run:
 
 ```
-$ docker run -it -p 5000:5000 codait/max-places365-cnn
+$ docker run -it -p 5000:5000 codait/max-scene-classifier
 ```
 
 This will pull a pre-built image from Docker Hub (or use an existing image if already cached locally) and run it.
@@ -56,7 +56,7 @@ You can also deploy the model on Kubernetes using the latest docker image on Doc
 On your Kubernetes cluster, run the following commands:
 
 ```
-$ kubectl apply -f https://raw.githubusercontent.com/IBM/MAX-Places365-CNN/master/max-places365-cnn.yaml
+$ kubectl apply -f https://raw.githubusercontent.com/IBM/MAX-Scene-Classifier/master/max-scene-classifier.yaml
 ```
 
 The model will be available internally at port `5000`, but can also be accessed externally through the `NodePort`.
@@ -74,19 +74,19 @@ The model will be available internally at port `5000`, but can also be accessed 
 Clone this repository locally. In a terminal, run the following command:
 
 ```
-$ git clone https://github.com/IBM/MAX-Places365-CNN.git
+$ git clone https://github.com/IBM/MAX-Scene-Classifier.git
 ```
 
 Change directory into the repository base folder:
 
 ```
-$ cd MAX-Places365-CNN
+$ cd MAX-Scene-Classifier
 ```
 
 To build the docker image locally, run: 
 
 ```
-$ docker build -t max-places365-cnn .
+$ docker build -t max-scene-classifier .
 ```
 
 All required model assets will be downloaded during the build process. _Note_ that currently this docker image is CPU only (we will add support for GPU images later).
@@ -96,7 +96,7 @@ All required model assets will be downloaded during the build process. _Note_ th
 To run the docker image, which automatically starts the model serving API, run:
 
 ```
-$ docker run -it -p 5000:5000 max-places365-cnn
+$ docker run -it -p 5000:5000 max-scene-classifier
 ```
 
 ### 3. Use the Model
