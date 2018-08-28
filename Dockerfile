@@ -12,8 +12,8 @@ RUN wget -nv --show-progress --progress=bar:force:noscroll  ${model_bucket}/${mo
 #RUN conda install -y pytorch-cpu torchvision -c pytorch
 
 # pip install pytorch to avoid dependencies on MKL or CUDA
-RUN pip install http://download.pytorch.org/whl/cpu/torch-0.3.1-cp36-cp36m-linux_x86_64.whl &&\
-RUN pip install torchvision
+RUN pip install http://download.pytorch.org/whl/cpu/torch-0.3.1-cp36-cp36m-linux_x86_64.whl && \
+    pip install torchvision
 
 COPY . /workspace
 
