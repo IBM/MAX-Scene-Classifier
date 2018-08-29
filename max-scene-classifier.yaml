@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: max-places365-cnn
+  name: max-scene-classifier
 spec:
   selector:
-    app: max-places365-cnn
+    app: max-scene-classifier
   ports:
   - port: 5000
   type: NodePort
@@ -12,21 +12,21 @@ spec:
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: max-places365-cnn
+  name: max-scene-classifier
   labels:
-    app: max-places365-cnn
+    app: max-scene-classifier
 spec:
   selector:
     matchLabels:
-      app: max-places365-cnn
+      app: max-scene-classifier
   replicas: 1
   template:
     metadata:
       labels:
-        app: max-places365-cnn
+        app: max-scene-classifier
     spec:
       containers:
-      - name: max-places365-cnn
-        image: codait/max-places365-cnn:latest
+      - name: max-scene-classifier
+        image: codait/max-max-scene-classifier:latest
         ports:
         - containerPort: 5000
