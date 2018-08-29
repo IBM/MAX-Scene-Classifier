@@ -27,6 +27,6 @@ spec:
     spec:
       containers:
       - name: max-scene-classifier
-        image: codait/max-max-scene-classifier:latest
+        image: codait/max-scene-classifier:latest
         ports:
         - containerPort: 5000
