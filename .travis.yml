@@ -1,0 +1,16 @@
+language: python
+python:
+  - 3.6
+
+services:
+  - docker
+
+install:
+  - docker build -t max-scene-classifier .
+  - docker run -it -d -p 5000:5000 max-scene-classifier
+
+before_script:
+  - pip install pytest requests
+
+script:
+  - pytest tests/test.py
