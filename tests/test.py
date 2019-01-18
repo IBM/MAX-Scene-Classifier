@@ -46,5 +46,17 @@ def test_predict():
     assert response['predictions'][0]['probability'] > 0.7
 
 
+def test_invalid_input():
+    model_endpoint = 'http://localhost:5000/model/predict'
+    file_path = 'assets/README.md'
+
+    with open(file_path, 'rb') as file:
+        file_form = {'image': (file_path, file, 'image/jpeg')}
+        r = requests.post(url=model_endpoint, files=file_form)
+
+    assert r.status_code == 400
+    response = r.json()
+    assert 'input is not a valid image' in response['message']
+
 if __name__ == '__main__':
     pytest.main([__file__])

@@ -25,7 +25,7 @@ class Model(Resource):
 label_prediction = api.model('LabelPrediction', {
     'label_id': fields.String(required=False, description='Label identifier'),
     'label': fields.String(required=True, description='Class label'),
-    'probability': fields.Float(required=True)
+    'probability': fields.Float(required=True, description='Predicted probability for the class label')
 })
 
 predict_response = api.model('ModelPredictResponse', {
@@ -35,7 +35,8 @@ predict_response = api.model('ModelPredictResponse', {
 
 # set up parser for image input data
 image_parser = api.parser()
-image_parser.add_argument('image', type=FileStorage, location='files', required=True)
+image_parser.add_argument('image', type=FileStorage, location='files', required=True, 
+                            help='An image file (encoded as PNG or JPG/JPEG)')
 
 @api.route('/predict')
 class Predict(Resource):
