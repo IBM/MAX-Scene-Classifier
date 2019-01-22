@@ -12,7 +12,13 @@ logger = logging.getLogger()
 from config import MODEL_INPUT_IMG_SIZE, DEFAULT_MODEL_PATH, DEFAULT_MODEL_FILE
 
 def read_image(image_data):
-    image = Image.open(io.BytesIO(image_data))
+    try:
+        image = Image.open(io.BytesIO(image_data))
+    except Exception as e:
+        logger.warn(str(e))
+        from flask import abort
+        abort(400, "The provided input is not a valid image (PNG or JPG required).")
+
     return image
 
 def preprocess_image(image, target):
