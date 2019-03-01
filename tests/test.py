@@ -29,6 +29,8 @@ def test_metadata():
     assert metadata['name'] == 'resnet18_places365 Pytorch Model'
     assert metadata['description'] == 'resnet18_places365 Pytorch ResNet model trained on Places365'
     assert metadata['license'] == 'CC BY'
+    assert metadata['type'] == 'Image Classification'
+    assert 'max-scene-classifier' in metadata['source']
 
 
 def test_labels():

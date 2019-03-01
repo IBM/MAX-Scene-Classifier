@@ -21,10 +21,10 @@ labels_response = MAX_API.model('LabelsResponse', {
 })
 
 class ModelLabelsAPI(MetadataAPI):
+    '''API for getting information about available class labels'''
 
     id_to_class = {i: c for i, c in enumerate(model_wrapper.classes)}
 
-    '''API for getting information about available entity tags'''
     @MAX_API.doc('get_labels')
     @MAX_API.marshal_with(labels_response)
     def get(self):
