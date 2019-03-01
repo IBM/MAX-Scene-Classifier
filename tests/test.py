@@ -1,7 +1,5 @@
 import pytest
 import requests
-from PIL import Image
-import io
 
 
 def test_swagger():
