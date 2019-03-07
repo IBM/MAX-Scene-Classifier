@@ -1,3 +1,5 @@
+from maxfw.model import MAXModelWrapper
+
 import torch
 from torch.autograd import Variable as V
 from torchvision import transforms as trn
@@ -9,11 +11,12 @@ import logging
 
 logger = logging.getLogger()
 
-from config import MODEL_INPUT_IMG_SIZE, DEFAULT_MODEL_PATH, DEFAULT_MODEL_FILE
+from config import MODEL_ID, MODEL_LICENSE, API_TITLE,\
+    MODEL_INPUT_IMG_SIZE, DEFAULT_MODEL_PATH, DEFAULT_MODEL_FILE
 
 def read_image(image_data):
     try:
-        image = Image.open(io.BytesIO(image_data))
+        image = Image.open(io.BytesIO(image_data)).convert('RGB')
     except Exception as e:
         logger.warn(str(e))
         from flask import abort
@@ -39,8 +42,17 @@ def post_process_result(probs, idxs, classes, topk=5):
     return results
     
 
-class ModelWrapper(object):
-    """Model wrapper for PyTorch models"""
+class ModelWrapper(MAXModelWrapper):
+
+    MODEL_META_DATA = {
+        'id': MODEL_ID,
+        'name': API_TITLE,
+        'description': 'Pytorch ResNet18 model trained on Places365 dataset',
+        'license': '{}'.format(MODEL_LICENSE),
+        'type': 'Image Classification',
+        'source': 'https://developer.ibm.com/exchanges/models/all/{}/'.format(MODEL_ID)
+    }
+
     def __init__(self, path=DEFAULT_MODEL_PATH, model_file=DEFAULT_MODEL_FILE):
         logger.info('Loading model from: {}...'.format(path))
         model_path = '{}/{}'.format(path, model_file)
@@ -56,12 +68,17 @@ class ModelWrapper(object):
                 classes.append(line.strip().split(' ')[0][3:])
         self.classes = tuple(classes)
 
-    def predict(self, x):
-        x = preprocess_image(x, MODEL_INPUT_IMG_SIZE)
-        logit = self.model.forward(x)
-        h_x = F.softmax(logit, 1).data.squeeze()
-        probs, idx = h_x.sort(0, True)
+    def _pre_process(self, x):
+        return preprocess_image(x, MODEL_INPUT_IMG_SIZE)
+
+    def _post_process(self, x):
+        probs, idx = x.sort(0, True)
         return post_process_result(probs, idx, self.classes)
+
+    def _predict(self, x):
+        logit = self.model.forward(x)
+        probs = F.softmax(logit, 1).data.squeeze()
+        return probs
 
 
         
