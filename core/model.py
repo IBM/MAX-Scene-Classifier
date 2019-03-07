@@ -11,7 +11,8 @@ import logging
 
 logger = logging.getLogger()
 
-from config import MODEL_INPUT_IMG_SIZE, DEFAULT_MODEL_PATH, DEFAULT_MODEL_FILE, MODEL_META_DATA as model_meta
+from config import MODEL_ID, MODEL_LICENSE, API_TITLE,\
+    MODEL_INPUT_IMG_SIZE, DEFAULT_MODEL_PATH, DEFAULT_MODEL_FILE
 
 def read_image(image_data):
     try:
@@ -43,7 +44,14 @@ def post_process_result(probs, idxs, classes, topk=5):
 
 class ModelWrapper(MAXModelWrapper):
 
-    MODEL_META_DATA = model_meta
+    MODEL_META_DATA = {
+        'id': MODEL_ID,
+        'name': API_TITLE,
+        'description': 'Pytorch ResNet18 model trained on Places365 dataset',
+        'license': '{}'.format(MODEL_LICENSE),
+        'type': 'Image Classification',
+        'source': 'https://developer.ibm.com/exchanges/models/all/{}/'.format(MODEL_ID)
+    }
 
     def __init__(self, path=DEFAULT_MODEL_PATH, model_file=DEFAULT_MODEL_FILE):
         logger.info('Loading model from: {}...'.format(path))

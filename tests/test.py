@@ -23,9 +23,9 @@ def test_metadata():
     assert r.status_code == 200
 
     metadata = r.json()
-    assert metadata['id'] == 'resnet18_places365-pytorch-places365'
-    assert metadata['name'] == 'resnet18_places365 Pytorch Model'
-    assert metadata['description'] == 'resnet18_places365 Pytorch ResNet model trained on Places365'
+    assert metadata['id'] == 'max-scene-classifier'
+    assert metadata['name'] == 'MAX Scene Classifier'
+    assert metadata['description'] == 'Pytorch ResNet18 model trained on Places365 dataset'
     assert metadata['license'] == 'CC BY'
     assert metadata['type'] == 'Image Classification'
     assert 'max-scene-classifier' in metadata['source']
@@ -60,29 +60,21 @@ def _check_predict(r):
 def test_predict():
 
     model_endpoint = 'http://localhost:5000/model/predict'
-    file_path = 'tests/bakery.jpg'
+    formats = ['jpg', 'png']
+    file_path = 'tests/bakery.{}'
 
-    with open(file_path, 'rb') as file:
-        file_form = {'image': (file_path, file, 'image/jpeg')}
-        r = requests.post(url=model_endpoint, files=file_form)
-        _check_predict(r)
-    
-
-def test_png():
-
-    model_endpoint = 'http://localhost:5000/model/predict'
-    file_path = 'tests/bakery.png'
-
-    with open(file_path, 'rb') as file:
-        file_form = {'image': (file_path, file, 'image/png')}
-        r = requests.post(url=model_endpoint, files=file_form)
+    for f in formats:
+        p = file_path.format(f)
+        with open(p, 'rb') as file:
+            file_form = {'image': (p, file, 'image/{}'.format(f))}
+            r = requests.post(url=model_endpoint, files=file_form)
         _check_predict(r)
 
 
 def test_invalid_input():
 
     model_endpoint = 'http://localhost:5000/model/predict'
-    file_path = 'assets/README.md'
+    file_path = 'README.md'
 
     with open(file_path, 'rb') as file:
         file_form = {'image': (file_path, file, 'image/jpeg')}
