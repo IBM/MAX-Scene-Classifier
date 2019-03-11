@@ -110,7 +110,7 @@ Use the `model/predict` endpoint to load a test image (you can use one of the te
 You can also test it on the command line, for example:
 
 ```
-$ curl -F "image=@assets/acquarium.jpg" -XPOST http://localhost:5000/model/predict
+$ curl -F "image=@assets/aquarium.jpg" -XPOST http://localhost:5000/model/predict
 ```
 
 You should see a JSON response like that below:

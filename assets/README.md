@@ -10,7 +10,7 @@ _Note_ the model files are hosted on [IBM Cloud Object Storage](http://max-asset
 
 All test images are from [Pexels](https://www.pexels.com) and licensed under a [CC0 License](https://creativecommons.org/publicdomain/zero/1.0/).
 
-* [`acquarium.jpg`](https://www.pexels.com/photo/black-and-gray-fish-889848/)
+* [`aquarium.jpg`](https://www.pexels.com/photo/black-and-gray-fish-889848/)
 * [`paris.jpg`](https://www.pexels.com/photo/picture-of-eiffel-tower-338515/)
 * [`bakery.jpg`](https://www.pexels.com/photo/bacon-rosemart-192933/)
 * [`ruins.jpg`](https://www.pexels.com/photo/odeon-of-herodes-atticus-772686/)
