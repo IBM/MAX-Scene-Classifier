@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/IBM/MAX-Scene-Classifier.svg?branch=master)](https://travis-ci.org/IBM/MAX-Scene-Classifier) [![Website Status](https://img.shields.io/website/http/max-scene-classifier.max.us-south.containers.appdomain.cloud/swagger.json.svg?label=api+demo)](http://max-scene-classifier.max.us-south.containers.appdomain.cloud/)
+
 # IBM Code Model Asset Exchange: Scene Classifier
 
 This repository contains code to instantiate and deploy an image classification model. This model recognizes the 365 different classes of scene/location in the [Places365-Standard subset of the Places2 Dataset](http://places2.csail.mit.edu/). The model is based on the [Places365-CNN Model](https://github.com/CSAILVision/places365) and consists of a pre-trained deep convolutional net using the ResNet architecture, trained on the [ImageNet-2012](http://www.image-net.org/challenges/LSVRC/2012/) data set. The pre-trained model is then fine-tuned on the Places365-Standard dataset. The input to the model is a 224x224 image, and the output is a list of estimated class probabilities.
