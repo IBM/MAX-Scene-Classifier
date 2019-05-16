@@ -4,7 +4,7 @@
 
 Model files are from the [Places365-CNN Github](https://github.com/CSAILVision/places365), where they are available under a [CC BY License](https://creativecommons.org/licenses/by/4.0/).
 
-_Note_ the model files are hosted on [IBM Cloud Object Storage](http://max-assets.s3-api.us-geo.objectstorage.softlayer.net/pytorch/places365/whole_resnet18_places365_python36.pth).
+_Note_ the model files are hosted on [IBM Cloud Object Storage](http://max-assets.s3.us.cloud-object-storage.appdomain.cloud/scene-classifier/1.0/assets.tar.gz).
 
 ## Images
 
