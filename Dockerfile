@@ -1,6 +1,6 @@
-FROM codait/max-base:v1.1.1
+FROM codait/max-base:v1.1.3
 
-ARG model_bucket=http://max-assets.s3.us.cloud-object-storage.appdomain.cloud/scene-classifier/1.0
+ARG model_bucket=https://s3.us-south.cloud-object-storage.appdomain.cloud/max-assets-dev/max-scene-classifier/1.0.1
 ARG model_file=assets.tar.gz
 
 WORKDIR /workspace

@@ -10,7 +10,7 @@ SWAGGER_UI_DOC_EXPANSION = 'none'
 # API metadata
 API_TITLE = 'MAX Scene Classifier'
 API_DESC = 'Classify images according to the place/location labels in the Places365 data set.'
-API_VERSION = '1.1.0'
+API_VERSION = '1.2.0'
 MODEL_ID = API_TITLE.lower().replace(' ', '-')
 
 # default model
