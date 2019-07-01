@@ -13,5 +13,5 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-from .metadata import ModelMetadataAPI
-from .predict import ModelPredictAPI, ModelLabelsAPI
+from .metadata import ModelMetadataAPI  # noqa
+from .predict import ModelPredictAPI, ModelLabelsAPI  # noqa
