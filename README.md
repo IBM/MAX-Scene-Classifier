@@ -4,7 +4,7 @@
 
 This repository contains code to instantiate and deploy an image classification model. This model recognizes the 365 different classes of scene/location in the [Places365-Standard subset of the Places2 Dataset](http://places2.csail.mit.edu/). The model is based on the [Places365-CNN Model](https://github.com/CSAILVision/places365) and consists of a pre-trained deep convolutional net using the ResNet architecture, trained on the [ImageNet-2012](http://www.image-net.org/challenges/LSVRC/2012/) data set. The pre-trained model is then fine-tuned on the Places365-Standard dataset. The input to the model is a 224x224 image, and the output is a list of estimated class probabilities.
 
-The specific model variant used in this repository is the [PyTorch Places365 ResNet18 Model](https://github.com/CSAILVision/places365#pre-trained-cnn-models-on-places365-standard). The model files are hosted on [IBM Cloud Object Storage](http://max-assets.s3.us.cloud-object-storage.appdomain.cloud/scene-classifier/1.0/assets.tar.gz). The code in this repository deploys the model as a web service in a Docker container. This repository was developed as part of the [IBM Code Model Asset Exchange](https://developer.ibm.com/code/exchanges/models/).
+The specific model variant used in this repository is the [PyTorch Places365 ResNet18 Model](https://github.com/CSAILVision/places365#pre-trained-cnn-models-on-places365-standard). The model files are hosted on [IBM Cloud Object Storage](https://s3.us-south.cloud-object-storage.appdomain.cloud/max-assets-prod/max-scene-classifier/1.0.1/assets.tar.gz). The code in this repository deploys the model as a web service in a Docker container. This repository was developed as part of the [IBM Code Model Asset Exchange](https://developer.ibm.com/code/exchanges/models/).
 
 ## Model Metadata
 | Domain | Application | Industry  | Framework | Training Data | Input Data Format |
@@ -27,7 +27,7 @@ using Places Database"](http://places.csail.mit.edu/places_NIPS14.pdf), Advances
 | This repository | [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0) | [LICENSE](LICENSE) |
 | Model Weights | [CC BY License](https://creativecommons.org/licenses/by/4.0/) | [Places365-CNN](https://github.com/CSAILVision/places365)|
 | Model Code (3rd party) | [MIT](https://opensource.org/licenses/MIT) | [Places365-CNN](https://github.com/CSAILVision/places365)|
-| Test assets | Various | [Asset README](assets/README.md) |
+| Test assets | Various | [Asset README](samples/README.md) |
 
 ## Pre-requisites:
 
@@ -105,14 +105,14 @@ $ docker run -it -p 5000:5000 max-scene-classifier
 
 The API server automatically generates an interactive Swagger documentation page. Go to `http://localhost:5000` to load it. From there you can explore the API and also create test requests.
 
-Use the `model/predict` endpoint to load a test image (you can use one of the test images from the `assets` folder) and get predicted labels for the image from the API.
+Use the `model/predict` endpoint to load a test image (you can use one of the test images from the `samples` folder) and get predicted labels for the image from the API.
 
 ![Swagger Doc Screenshot](docs/swagger-screenshot.png)
 
 You can also test it on the command line, for example:
 
 ```
-$ curl -F "image=@assets/aquarium.jpg" -XPOST http://localhost:5000/model/predict
+$ curl -F "image=@samples/aquarium.jpg" -XPOST http://localhost:5000/model/predict
 ```
 
 You should see a JSON response like that below:
