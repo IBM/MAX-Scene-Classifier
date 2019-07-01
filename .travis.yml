@@ -10,8 +10,9 @@ install:
   - docker run -it -d -p 5000:5000 max-scene-classifier
 
 before_script:
-  - pip install pytest requests
+  - pip install -r test-requirements.txt
   - sleep 30
 
 script:
+  - flake8 . --max-line-length=127
   - pytest tests/test.py
