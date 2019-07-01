@@ -18,7 +18,7 @@ from core.model import ModelWrapper, read_image
 
 from maxfw.core import MAX_API, PredictAPI, MetadataAPI
 
-from flask_restplus import Namespace, Resource, fields
+from flask_restplus import fields
 from werkzeug.datastructures import FileStorage
 
 
@@ -36,6 +36,7 @@ labels_response = MAX_API.model('LabelsResponse', {
     'labels': fields.List(fields.Nested(model_label), description='Class labels that can be predicted by the model')
 })
 
+
 class ModelLabelsAPI(MetadataAPI):
     '''API for getting information about available class labels'''
 
@@ -51,7 +52,7 @@ class ModelLabelsAPI(MetadataAPI):
         return result
 
 
-# === Predict API 
+# === Predict API
 
 label_prediction = MAX_API.model('LabelPrediction', {
     'label_id': fields.String(required=False, description='Label identifier'),
@@ -66,8 +67,9 @@ predict_response = MAX_API.model('ModelPredictResponse', {
 
 # set up parser for image input data
 image_parser = MAX_API.parser()
-image_parser.add_argument('image', type=FileStorage, location='files', required=True, 
-                            help='An image file (encoded as PNG or JPG/JPEG)')
+image_parser.add_argument('image', type=FileStorage, location='files', required=True,
+                          help='An image file (encoded as PNG or JPG/JPEG)')
+
 
 class ModelPredictAPI(PredictAPI):
 
@@ -82,9 +84,9 @@ class ModelPredictAPI(PredictAPI):
         image_data = args['image'].read()
         image = read_image(image_data)
         preds = model_wrapper.predict(image)
-        
+
         label_preds = [{'label_id': p[0], 'label': p[1], 'probability': p[2]} for p in [x for x in preds]]
         result['predictions'] = label_preds
         result['status'] = 'ok'
 
-        return result   
+        return result

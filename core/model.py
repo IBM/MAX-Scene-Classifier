@@ -14,6 +14,8 @@
 # limitations under the License.
 #
 
+from config import MODEL_ID, MODEL_LICENSE, API_TITLE,\
+    MODEL_INPUT_IMG_SIZE, DEFAULT_MODEL_PATH, DEFAULT_MODEL_FILE
 from maxfw.model import MAXModelWrapper
 
 import torch
@@ -27,8 +29,6 @@ import logging
 
 logger = logging.getLogger()
 
-from config import MODEL_ID, MODEL_LICENSE, API_TITLE,\
-    MODEL_INPUT_IMG_SIZE, DEFAULT_MODEL_PATH, DEFAULT_MODEL_FILE
 
 def read_image(image_data):
     try:
@@ -40,6 +40,7 @@ def read_image(image_data):
 
     return image
 
+
 def preprocess_image(image, target):
     # load the image transformer
     centre_crop = trn.Compose([
@@ -50,13 +51,14 @@ def preprocess_image(image, target):
     ])
     return V(centre_crop(image).unsqueeze(0), volatile=True)
 
+
 def post_process_result(probs, idxs, classes, topk=5):
     results = []
     for i in range(0, topk):
         result = (idxs[i], classes[idxs[i]], probs[i])
         results.append(result)
     return results
-    
+
 
 class ModelWrapper(MAXModelWrapper):
 
@@ -72,7 +74,7 @@ class ModelWrapper(MAXModelWrapper):
     def __init__(self, path=DEFAULT_MODEL_PATH, model_file=DEFAULT_MODEL_FILE):
         logger.info('Loading model from: {}...'.format(path))
         model_path = '{}/{}'.format(path, model_file)
-        self.model = torch.load(model_path, map_location=lambda storage, loc: storage) # cpu only for now ...
+        self.model = torch.load(model_path, map_location=lambda storage, loc: storage)  # cpu only for now ...
         logger.info('Loaded model')
         self._load_assets(path)
 
@@ -95,6 +97,3 @@ class ModelWrapper(MAXModelWrapper):
         logit = self.model.forward(x)
         probs = F.softmax(logit, 1).data.squeeze()
         return probs
-
-
-        

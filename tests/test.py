@@ -48,7 +48,7 @@ def test_metadata():
 
 
 def test_labels():
-    
+
     model_endpoint = 'http://localhost:5000/model/labels'
 
     r = requests.get(url=model_endpoint)
@@ -99,6 +99,7 @@ def test_invalid_input():
     assert r.status_code == 400
     response = r.json()
     assert 'input is not a valid image' in response['message']
+
 
 if __name__ == '__main__':
     pytest.main([__file__])
