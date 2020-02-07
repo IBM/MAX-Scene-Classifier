@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-FROM codait/max-base:v1.1.3
+FROM codait/max-base:v1.3.1
 
 ARG model_bucket=https://max.cdn.appdomain.cloud/max-scene-classifier/1.0.1
 ARG model_file=assets.tar.gz
