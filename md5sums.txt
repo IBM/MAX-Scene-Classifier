@@ -1,1 +1,0 @@
-73ee87e2c9cc9a90182723aadedddac8  assets/whole_resnet18_places365_python36.pth
