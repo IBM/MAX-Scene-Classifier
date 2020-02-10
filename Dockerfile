@@ -16,6 +16,8 @@
 
 FROM codait/max-base:v1.3.1
 
+RUN conda install python=3.6
+
 ARG model_bucket=https://max.cdn.appdomain.cloud/max-scene-classifier/1.0.1
 ARG model_file=assets.tar.gz
 
