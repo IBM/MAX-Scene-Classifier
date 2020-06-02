@@ -10,7 +10,8 @@ install:
   - docker run -it -d -p 5000:5000 max-scene-classifier
 
 before_script:
-  - pip install -r test-requirements.txt
+  - pip install -r requirements-test.txt
+  - bandit -r .
   - sleep 30
 
 script:
