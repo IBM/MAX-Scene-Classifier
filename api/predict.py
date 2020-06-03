@@ -47,7 +47,7 @@ class ModelLabelsAPI(MetadataAPI):
     def get(self):
         '''Return the list of labels that can be predicted by the model'''
         result = {}
-        result['labels'] = [{'id': l[0], 'name': l[1]} for l in self.id_to_class.items()]
+        result['labels'] = [{'id': x[0], 'name': x[1]} for x in self.id_to_class.items()]
         result['count'] = len(self.id_to_class)
         return result
 
