@@ -43,7 +43,7 @@ using Places Database"](http://places.csail.mit.edu/places_NIPS14.pdf), Advances
 * [Deploy on Kubernetes](#deploy-on-kubernetes)
 * [Run Locally](#run-locally)
 
-## Deploy from Docker Hub
+## Deploy from Quay
 
 To run the docker image, which automatically starts the model serving API, run:
 
