@@ -38,7 +38,7 @@ using Places Database"](http://places.csail.mit.edu/places_NIPS14.pdf), Advances
 
 # Deployment options
 
-* [Deploy from Docker Hub](#deploy-from-docker-hub)
+* [Deploy from Quay](#deploy-from-quay)
 * [Deploy on Red Hat OpenShift](#deploy-on-red-hat-openshift)
 * [Deploy on Kubernetes](#deploy-on-kubernetes)
 * [Run Locally](#run-locally)
