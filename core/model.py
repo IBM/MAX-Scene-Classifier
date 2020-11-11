@@ -52,12 +52,8 @@ def preprocess_image(image, target):
     return V(centre_crop(image).unsqueeze(0), volatile=True)
 
 
-def post_process_result(probs, idxs, classes, topk=5):
-    results = []
-    for i in range(0, topk):
-        result = (idxs[i], classes[idxs[i]], probs[i])
-        results.append(result)
-    return results
+def post_process_result(probs, idxs, classes):
+    return [(idxs[i], classes[idxs[i]], probs[i]) for i in range(len(idxs))]
 
 
 class ModelWrapper(MAXModelWrapper):
@@ -90,8 +86,8 @@ class ModelWrapper(MAXModelWrapper):
         return preprocess_image(x, MODEL_INPUT_IMG_SIZE)
 
     def _post_process(self, x):
-        probs, idx = x.sort(0, True)
-        return post_process_result(probs, idx, self.classes)
+        probs, idxs = x.topk(5)
+        return post_process_result(probs, idxs, self.classes)
 
     def _predict(self, x):
         logit = self.model.forward(x)
