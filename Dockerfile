@@ -23,6 +23,7 @@ ARG model_bucket=https://max-cdn.cdn.appdomain.cloud/max-scene-classifier/1.0.1
 ARG model_file=assets.tar.gz
 
 RUN useradd --create-home max
+RUN chown -R max:max /opt/conda
 USER max
 WORKDIR /home/max
 RUN mkdir assets
